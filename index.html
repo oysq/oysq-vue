@@ -13,8 +13,8 @@
 		<ul>
 			<todo-list :content='item'
 					   :index='index'
-					   v-for="(item, index) in nameList"
 					   @delete-item='handleDeleteItem'
+					   v-for="(item, index) in nameList"
 			></todo-list>
 		</ul>
 	</div>
@@ -50,10 +50,6 @@
 				}
 			}
 		})
-
-		setTimeout(function(){
-			app.$data.content = "ha ha ha";
-		}, 2000)
 
 	</script>
 
