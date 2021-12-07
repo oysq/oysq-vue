@@ -11,14 +11,24 @@
 		<input type="text" v-model="inputName"/>
 		<button @click='submit'>提交</button>
 		<ul>
-			<li v-for="item in nameList">{{item}}</li>
+			<todo-list :content='item'
+					   :index='index'
+					   v-for="(item, index) in nameList"
+					   @delete-item='handleDeleteItem'
+			></todo-list>
 		</ul>
 	</div>
 
 	<script>
 
 		var TodoList = {
-
+			props: ['content', 'index'],
+			template: "<li @click='handleItemClick'>{{content}}</li>",
+			methods: {
+				handleItemClick: function() {
+					this.$emit("delete-item", this.index)
+				}
+			}
 		}
 		
 		var app = new Vue({
@@ -27,10 +37,16 @@
 				inputName: '',
 				nameList: ['张三', '李四', '王五']
 			},
+			components: {
+				TodoList: TodoList
+			},
 			methods: {
 				submit: function() {
 					this.nameList.push(this.inputName)
 					this.inputName = ""
+				},
+				handleDeleteItem: function(index) {
+					this.nameList.splice(index, 1)
 				}
 			}
 		})
