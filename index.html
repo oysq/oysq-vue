@@ -7,19 +7,36 @@
 </head>
 <body>
 
-	<div id="app">{{content}}</div>
+	<div id="app">
+		<input type="text" v-model="inputName"/>
+		<button @click='submit'>提交</button>
+		<ul>
+			<li v-for="item in nameList">{{item}}</li>
+		</ul>
+	</div>
 
 	<script>
+
+		var TodoList = {
+
+		}
 		
 		var app = new Vue({
 			el: '#app',
 			data: {
-				content: 'hello word'
+				inputName: '',
+				nameList: ['张三', '李四', '王五']
+			},
+			methods: {
+				submit: function() {
+					this.nameList.push(this.inputName)
+					this.inputName = ""
+				}
 			}
 		})
 
 		setTimeout(function(){
-			app.$data.content = "hahaha";
+			app.$data.content = "ha ha ha";
 		}, 2000)
 
 	</script>
