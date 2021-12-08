@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		<input type="text" v-model="inputName"/>
+		<button @click='submit'>提交</button>
+		<ul>
+			<todo-list :content='item'
+					   :index='index'
+					   @delete-item='handleDeleteItem'
+					   v-for="(item, index) in nameList"
+			></todo-list>
+		</ul>
+	</div>
+
+	<script>
+
+		// 所有的 vue 组件都是一个 vue 实例
+		// 一个 vue 应用通过 new Vue() 创建一个根实例，然后底下挂载、嵌套、复用很多组件实例构成一颗树来完成
+		// 到我们访问 app.a 时，默认访问的是 data 里的 property，如果要访问其他属性，需要加上 $ 符号，比如：app.$data.a / app.$destory() / ...
+
+		var TodoList = {
+			props: ['content', 'index'],
+			template: "<li @click='handleItemClick'>{{content}}</li>",
+			methods: {
+				handleItemClick: function() {
+					this.$emit("delete-item", this.index)
+				}
+			}
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			data: {
+				inputName: '',
+				nameList: ['张三', '李四', '王五']
+			},
+			components: {
+				TodoList: TodoList
+			},
+			methods: {
+				submit: function() {
+					this.nameList.push(this.inputName)
+					this.inputName = ""
+				},
+				handleDeleteItem: function(index) {
+					this.nameList.splice(index, 1)
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>
