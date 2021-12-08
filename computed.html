@@ -13,6 +13,7 @@
 		<div>{{fullNameByComputed}}</div>
 		<div>{{fullName}}</div>
 		<div>{{age}}</div>
+		<div>{{total}}</div>
 	</div>
 
 	<script>
@@ -23,7 +24,9 @@
 				firstName: '张',
 				secendName: '大大',
 				fullName: '张 大大',
-				age: 28
+				age: 28,
+				num: 12,
+				numType: "个"
 			},
 			methods: {
 				fullNameByFunc: function() {
@@ -35,6 +38,18 @@
 				fullNameByComputed: function() {
 					console.log('计算了一次 fullNameByComputed')
 					return this.firstName + " " + this.secendName;
+				},
+				// total 用来演示 compute 的 getter setter 方法
+				total: {
+					get: function() {
+						return this.num + " " + this.numType
+					},
+					set: function(value) {
+						// 这里虽然 num 和 numType 都改变了，但是 get 方法只会触发一次
+						var arr = value.split(" ");
+						this.num = arr[0]
+						this.numType = arr[1]
+					}
 				}
 			},
 			watch: {
