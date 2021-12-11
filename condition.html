@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-条件渲染</title>
+	<script src="./vue.js" ></script>
+	<style>
+		.activated {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<div v-if="isShow">OYSQ</div>
+		<div v-show="isShow">OYSQ</div>
+
+		<div v-if="type == 'name'" key="name">
+			姓名：<input/>
+		</div>
+		<div v-else-if="type == 'age'" key="age">
+			年龄：<input/>
+		</div>
+		<div v-else key="other">
+			其他：<input/>
+		</div>
+
+	</div>
+
+	<script>
+		
+		var app = new Vue({
+			el: '#app',
+			data: {
+				isShow: false,
+				type: "name"
+			}
+		})
+
+	</script>
+
+</body>
+</html>

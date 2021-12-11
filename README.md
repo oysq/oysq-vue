@@ -2,6 +2,8 @@
 
 ---
 
+> 这是一篇对 Vue 零散知识点的扫盲和代码验证~~
+
 #### Vue 实例和组件
 
 > component.html
@@ -11,7 +13,7 @@
 * 我们访问 `app.a`（或 `this.a`）时，默认访问的是 data 里的 property，如果要访问其他属性，需要加上 `$` 符号，比如：`app.$data.a` / `app.$destory()` / ...
 * data 属性内的 property 是响应式的，但是只有在实例创建时就存在的属性才是响应式的，如果在实例创建后才添加的新属性，比如：`app.$data.b='123'`，是不会和更新到视图的，也可以通过 `Object.freeze()` 方法阻止某个属性的响应
 
-#### Vue 生命周期
+#### 生命周期
 
 > life_cycle.html
 
@@ -43,9 +45,17 @@
 
 * `:class="{activated: isActivated}"` : isActivated=true时，:class="activated"，否则 class=""
 * `:class="[classStyle1, classStyle2, ...]"` : classStyle1、classStyle2 是一个个的 data 变量，值是什么，样式就是什么
-* `:style=styleObj` : 也是类似的道理，styleObj 是一个变量，里面存的不是class的名称，而是class内的各种样式
+* `:style=styleObj` / `:style=[styleObj1, styleObj2]` : 也是类似的道理，styleObj 是一个变量，里面存的不是class的名称，而是class内的各种样式
 
+#### 条件渲染
 
+> condition.html
+
+* `v-if` 标签决定一个标签是否在页面上渲染，不渲染时，连代码都不存在
+* `v-show` 标签决定一个标签是否在页面上展示，不展示时，代码还是存在的，只是通过 `style="display: none;"` 来隐藏。
+* 频繁显示隐藏的情况下，`v-show` 的性能更高
+* `v-if`/`v-else-if`/`v-else` 三个标签要连着用，中间不能穿插其他的标签，否则会报错
+* vue在切换
 
 
 
