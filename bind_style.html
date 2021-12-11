@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-样式绑定</title>
+	<script src="./vue.js" ></script>
+	<style>
+		.activated {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<div @click="chengeActivated_1"
+			 :class="{activated: isActivated}">
+			OYSQ
+		</div>
+
+		<div @click="chengeActivated_2"
+			 :class="[classStyle1, classStyle2]">
+			OYSQ
+		</div>
+
+		<div @click="chengeActivated_3"
+			 :style="styleObj">
+			OYSQ
+		</div>
+
+		<div @click="chengeActivated_3"
+			 :style="[styleObj, {fontSize: '30px'}]">
+			OYSQ
+		</div>
+
+	</div>
+
+	<script>
+		
+		var app = new Vue({
+			el: '#app',
+			data: {
+				isActivated: false,
+				classStyle1: "",
+				classStyle2: "",
+				styleObj: {
+					color: "black"
+				}
+			},
+			methods: {
+				chengeActivated_1: function() {
+					this.isActivated = !this.isActivated;
+				},
+				chengeActivated_2: function() {
+					this.classStyle1 = this.classStyle1 === "activated" ? "" : "activated";
+				},
+				chengeActivated_3: function() {
+					this.styleObj.color = this.styleObj.color === "red" ? "black" : "red";
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>

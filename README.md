@@ -23,7 +23,7 @@
 
 > template.html
 
-* 当看到 `{{}}` 或者 `v-` 符号时，内部的值就不是存粹的字符串，而是 `js` 代码，是可以填入表达式的
+* 当看到 `{{}}` 或者 `v-` 或者 `:` 符号时，内部的值就不是存粹的字符串，而是 `js` 代码，是可以填入表达式的
 * `v-text` 与 `v-html` 的区别为后者会解析为 `html`，而 `{{}}` 和 `v-text` 是相同的
 
 
@@ -33,8 +33,35 @@
 
 * computed 是自带缓存的，当它计算所需要依赖的变量没有改变时，它是不会重新计算的。而方法的方式，每次页面重新渲染，它都会重新计算一次
 * 侦听器 `watch` 也是在指定的变量发生改变时触发，可以实现类似的缓存效果，但是所有依赖的变量都得写一个侦听器，并不适合此场景
-* computed 还支持细化的 `getter`/`setter` 方法，`setter` 方法里面可能会改变多个依赖的 property，但是 `getter` 方法只会触发一次
+* computed 还支持细化的 `get`/`set` 方法，注意 `set` 方法里面可能会改变多个依赖的 property，但是 `get` 方法只会触发一次
 * `{{}}` 符号内使用 property 和 computed 是不需要带 `()` 后缀的，但是如果使用函数（methods 里的方法），就需要带上 `()` 后缀
+
+
+#### 样式绑定
+
+> bind_style.html
+
+* `:class="{activated: isActivated}"` : isActivated=true时，:class="activated"，否则 class=""
+* `:class="[classStyle1, classStyle2, ...]"` : classStyle1、classStyle2 是一个个的 data 变量，值是什么，样式就是什么
+* `:style=styleObj` : 也是类似的道理，styleObj 是一个变量，里面存的不是class的名称，而是class内的各种样式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
