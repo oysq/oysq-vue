@@ -62,16 +62,16 @@
 > list.html
 
 * 数组循环 `v-for="(item, index) in list"` 用 `in`
-    * vue 中通过直接对list数组下标进行赋值的方式虽然能改变值，但不能渲染到页面，需要通过一下方法:
-        * vue 提供的7种方法修改list，需要注意的是，当通过7种方式修改后，之前通过数组下标方式修改的值也会一并渲染到页面上
+    * vue 中通过直接对list数组下标进行赋值的方式虽然能改变值，但不能渲染到页面，需要通过以下方法之一:
+        * vue 提供的7种变异方法修改list，需要注意的是，当通过7种方式修改后，之前通过数组下标方式修改的值也会一并渲染到页面上。7种变异方法：`push` `pop` `shift` `unshift` `splice` `sort` `reverse`
         * 直接改变数组的引用，指向一个新数组：`list = [{}, {}, ...]`
-    * 7种方式：`push` `pop` `shift` `unshift` `splice` `sort` `reverse`
+        * 使用 `Vue.set(app.list, 2, {"a": "123"})` 或 `app.$set(app.list, 2, {"a": "123"})`
     * 当我们需要循环一整块dom元素时，可以使用 `template` 模板占位符标签包裹，模板占位符可以帮助我们包裹一些元素，但是真正渲染的时候并不会出现在页面上
 
 * 对象循环 `v-for="(value, key, index) of user"` 用 `of`
-    * 对象循环时，直接使用 `app.user.addr = "abc123"` 修改某个key的值或新增一个key，但是新增的key不会在页面进行渲染
+    * 对象循环时，可以直接使用 `app.user.addr = "abc123"` 修改某个key的值或新增一个key，但是新增的key不会在页面进行渲染，修改的才会
     * 改变整个对象的引用可以修改或新增key，且都渲染到页面
-    * `Vue.set(app.user, "addr", "abc123")` 可以对修改或新增key，且都渲染到页面
+    * `Vue.set(app.user, "addr", "abc123")` 或 `app.$set(app.user, "addr", "aaaaa")` 可以对修改或新增key，且都渲染到页面
 
 
 
