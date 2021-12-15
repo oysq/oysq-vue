@@ -73,8 +73,11 @@
     * 改变整个对象的引用可以修改或新增key，且都渲染到页面
     * `Vue.set(app.user, "addr", "abc123")` 或 `app.$set(app.user, "addr", "aaaaa")` 可以对修改或新增key，且都渲染到页面
 
+#### 事件绑定
 
+> list.html
 
+* `@Click` 可以传递 `$event` 得到点击事件的详细信息
 
 
 
