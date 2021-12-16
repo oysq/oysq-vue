@@ -11,23 +11,39 @@
 
 		<button @click="handleClick($event, 1, 2, 3)">Button</button>
 
+		<hr>
+
 		<div @click.self="handleClickSelf">
 			Alert
 			<div>NoAlert</div>
 		</div>
+
+		<hr>
 
 		<div @click.capture="handleClickOuter">
 			Outer
 			<div @click.capture="handleClickInner">Inner</div>
 		</div>
 
+		<hr>
+
 		<div @click.once="handleClickSelf">
 			Once
 		</div>
 
+		<hr>
+
 		<form action="/abc" @click.prevent>
 			<input type="submit">
 		</form>
+
+		<hr>
+
+		<button @click.right="handleClickSelf">右键</button>
+
+		<HR>
+
+		<input type="text" @keydown.enter="handleKeydown">
 
 	</div>
 
@@ -49,6 +65,9 @@
 				},
 				handleClickInner: function() {
 					alert("Inner")
+				},
+				handleKeydown: function(e) {
+					console.log(e.target.value)
 				}
 			}
 		})

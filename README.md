@@ -78,12 +78,17 @@
 > list.html
 
 * `@click` 可以传递 `$event` 得到点击事件的详细信息
-* 事件修饰符：`@click` 支持很多事件修饰符
+* 点击修饰符：`@click` 支持很多事件修饰符
    * `@click.self="handkerClick"` 只有点击元素本身才会触发点击事件，用来阻止冒泡行为
    * `@click.once="handleClick"` click事件只绑定一次，意思是点击事件只会出触发一次
    * `@click.prevent` 可以阻止表单提交事件
    * `@click.capture="handleClick"` 可以将默认的冒泡规则改变为捕获原则，意思是原来是里面先执行，现在改成了外面先执行
-
+   * `@click.left`/`@click.right`/`@click.middle` 可以指定左、右、中键才触发
+* 按键修饰符：`@keydown` 监听所有的按键事件，可以通过修饰符改变为：只监听指定的按键
+   * `@keydown.enter` 监听回车
+   * `@keydown.esc` 监听返回
+   * `@keydown.tab` 监听tab
+   * `@keydown.ctrl` 同时按住ctrl+其它按键时才触发
 
 
 
