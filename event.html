@@ -11,6 +11,24 @@
 
 		<button @click="handleClick($event, 1, 2, 3)">Button</button>
 
+		<div @click.self="handleClickSelf">
+			Alert
+			<div>NoAlert</div>
+		</div>
+
+		<div @click.capture="handleClickOuter">
+			Outer
+			<div @click.capture="handleClickInner">Inner</div>
+		</div>
+
+		<div @click.once="handleClickSelf">
+			Once
+		</div>
+
+		<form action="/abc" @click.prevent>
+			<input type="submit">
+		</form>
+
 	</div>
 
 	<script>
@@ -22,6 +40,15 @@
 			methods: {
 				handleClick: function(e, one, two, three) {
 					console.log(e, one, two, three)
+				},
+				handleClickSelf: function() {
+					alert("click")
+				},
+				handleClickOuter: function() {
+					alert("Outer")
+				},
+				handleClickInner: function() {
+					alert("Inner")
 				}
 			}
 		})
