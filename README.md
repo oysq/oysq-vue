@@ -91,6 +91,36 @@
    * `@keydown.ctrl` 同时按住ctrl+其它按键时才触发
 
 
+#### 表单绑定
+
+> model.html
+
+* `v-model="myValue"` 标签可以用来绑定各种标签的值，如 `input` 框的输入值、`select` 标签的勾选值等等...
+* 区分：
+   * `v-mode` 用来绑定标签的操作值，是一个模型，所以用法是等于：`v-model="myValue"`
+   * `v-bind` 用来绑定标签的属性，所以用法是谁等于谁，`v-bind:class="activated"`，因为同一个标签会有很多属性，所以可以简写为 `:class="activated`
+* 修饰符
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
