@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件间的数据传递</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		
+		<counter :count="2" @inc="handleInc"></counter>
+		<counter :count="3" @inc="handleInc"></counter>
+
+		total:{{total}}
+
+	</div>
+
+	<script>
+
+		var counter = {
+			props: ['count'],
+			template: "<div @click='handleClick'>{{number}}</div>",
+			data: function() {
+				return {
+					number: this.count
+				}
+			},
+			methods: {
+				handleClick: function() {
+					this.number = this.number + 2
+					this.$emit("inc", 2)
+				}
+			}
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				counter: counter
+			},
+			data: {
+				total: 5
+			},
+			methods: {
+				handleInc: function(step) {
+					this.total = this.total + step
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>
