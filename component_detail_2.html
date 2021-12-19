@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件细节之数据安全</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		{{name}}
+		<table>
+			<tbody>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<script>
+
+		var row = {
+			template: "<tr><td/>content</td></tr>",
+			data: function() {
+				return {
+					content: "hello word"
+				}
+			}
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				row: row
+			},
+			data: {
+				name: "oysq"
+			}
+		})
+
+	</script>
+
+</body>
+</html>

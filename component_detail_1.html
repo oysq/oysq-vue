@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件细节之is语法</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+
+		<table>
+			<tbody>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<script>
+
+		var row = {
+			template: "<tr><td/>111</td><td/>222</td><td/>333</td></tr>"
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				row: row
+			}
+		})
+
+	</script>
+
+</body>
+</html>

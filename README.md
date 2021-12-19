@@ -13,6 +13,7 @@
 * 我们访问 `app.a`（或 `this.a`）时，默认访问的是 data 里的 property，如果要访问其他属性，需要加上 `$` 符号，比如：`app.$data.a` / `app.$destory()` / ...
 * data 属性内的 property 是响应式的，但是只有在实例创建时就存在的属性才是响应式的，如果在实例创建后才添加的新属性，比如：`app.$data.b='123'`，是不会和更新到视图的，也可以通过 `Object.freeze()` 方法阻止某个属性的响应
 
+
 #### 生命周期
 
 > life_cycle.html
@@ -47,6 +48,7 @@
 * `:class="[classStyle1, classStyle2, ...]"` : classStyle1、classStyle2 是一个个的 data 变量，值是什么，样式就是什么
 * `:style=styleObj` / `:style=[styleObj1, styleObj2]` : 也是类似的道理，styleObj 是一个变量，里面存的不是class的名称，而是class内的各种样式
 
+
 #### 条件渲染
 
 > condition.html
@@ -56,6 +58,7 @@
 * 频繁显示隐藏的情况下，`v-show` 的性能更高
 * `v-if`/`v-else-if`/`v-else` 三个标签要连着用，中间不能穿插其他的标签，否则会报错
 * vue 在切换 `v-if`/`v-else-if`/`v-else` 三个标签的内容时会尽量去复用里面的内容，导致组件的内容没有更新，在标签上加 `key` 去避免
+
 
 #### 列表渲染
 
@@ -72,6 +75,7 @@
     * 对象循环时，可以直接使用 `app.user.addr = "abc123"` 修改某个key的值或新增一个key，但是新增的key不会在页面进行渲染，修改的才会
     * 改变整个对象的引用可以修改或新增key，且都渲染到页面
     * `Vue.set(app.user, "addr", "abc123")` 或 `app.$set(app.user, "addr", "aaaaa")` 可以对修改或新增key，且都渲染到页面
+
 
 #### 事件绑定
 
@@ -105,6 +109,18 @@
    * `v-model.trim` 可以在绑定前去除前后的空格
 
 
+#### 组件细节之is语法
+
+> component_detail_1.html
+
+* html5 的规范要求: `<table>` 标签下必须是 `<tbody>` 标签，然后依次是 `<tr>` 和 `<td>` ，但是当我们用组件封装了 `<tr>` 和 `<td>` 时，html5 会解析失败，这个时候可以用 `is=` 语法来制定这个 `<tr>` 标签其实是某个组件。类似的还有 `<ul>`/`<li>`标签、`<select>` 标签等
+
+
+#### 组件细节之数据安全
+
+> component_detail_2.html
+
+* 在根组件定义 `data` 时我们时直接返回一个对象的，但是在组件内，我们的 `data` 必须是一个函数，函数内返回了一个对象。之所以这么设计，是因为根组件只会被调用一次，而子组件会被调用多次，我们希望每个子组件都有自己独立使用的 data 数据，而不是所有子组件共有一分 data，因此每个子组件都单独一份数据。
 
 
 
