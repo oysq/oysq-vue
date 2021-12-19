@@ -134,7 +134,7 @@
 
 #### 组件间传值
 
-> component_params.html
+> component_params_1.html
 
 * 父组件通过属性(`props`)向子组件传值，子组件通过事件触发(`$emit`)的方式向父组件传值
 * 单向数据流：
@@ -144,6 +144,22 @@
 * 子组件通过 `this.$emit('handle-click')` 触发外部方法时，方法名最好用小写加 `-` 的方式
 
 
+#### 组件参数校验与非props特性
+
+> component_params_2.html
+
+* `props: ['name', 'age']` : 不检验参数
+* `props: { name: String, age: [String, Number], content:{type: String, required: false}}` : 校验参数
+
+* 父组件向子组件传递值时，有两种传递方式：
+   * `content="123"` ：等号后面是普通字符串，因此子组件将把 `content` 解析为字符串
+   * `:content="123"` ：等号后面是js表达式，子组件将把 `content` 解析为数字123（因为 `v-bind` 后面跟的是js表达式）
+      * 因此，当我们使用 `:content="abc"` 时，如果 `abc` 是一个变量，则需要定义在 `data` 内，否则会报错，如果是想传递一个字符串 `abc`，正确的写法是：`:content="'abc'"`
+
+* props特性：当父组件传递一个变量，而子组件也有在 props 内接收了这个变量时，这个变量符合 `props特性`
+   * `props特性` 的变量不会出现在 dom 元素上，且子组件内部可以直接使用
+* props特性：当父组件传递一个变量，而子组件没有在 props 内接收了这个变量时，这个变量符合 `非props特性`
+   * `非props特性` 的变量会出现在 dom元素上，子组件不能使用它，否则会报错，`非props特性` 使用的场景非常少
 
 
 

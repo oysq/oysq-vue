@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件参数校验与非props特性</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		
+		<my-div :name="'oysq'" :age="29" :tip="{a:1}" content="hello world" :code="'abc123'"></my-div>
+
+	</div>
+
+	<script>
+
+		var myDiv = {
+			props: {
+				name: String,
+				age: Number,
+				tip: [ String, Number, Object ],
+				content: {
+					type: String,
+					required: false,
+					default: 'default value',
+					validator: function(value) {
+						return (value.length > 5)
+					}
+				}
+			},
+			template: "<div>{{name}} -- {{age}} -- {{tip}} -- {{content}}</div>",
+			data: function() {
+				return {
+				}
+			}
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				myDiv: myDiv
+			}
+		})
+
+	</script>
+
+</body>
+</html>
