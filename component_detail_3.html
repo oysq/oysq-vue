@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件细节之数据安全</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		
+		<div ref="myDiv" @click="handleMyDiv">hello word</div>
+
+		<hr>
+
+		<counter ref="one" @change-number="handleChange"></counter>
+		<counter ref="two" @change-number="handleChange"></counter>
+		{{total}}
+
+	</div>
+
+	<script>
+
+		var counter = {
+			template: "<div @click='handleClick'>{{number}}</div>",
+			data: function() {
+				return {
+					number: 0
+				}
+			},
+			methods: {
+				handleClick: function() {
+					this.number ++
+					this.$emit("change-number")
+				}
+			}
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				counter: counter
+			},
+			data: {
+				total: 0
+			},
+			methods: {
+				handleMyDiv: function() {
+					console.log(this.$refs.myDiv.innerHTML)
+				},
+				handleChange: function() {
+					this.total = this.$refs.one.number + this.$refs.two.number
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>
