@@ -100,6 +100,9 @@
    * `v-mode` 用来绑定标签的操作值，是一个模型，所以用法是等于：`v-model="myValue"`
    * `v-bind` 用来绑定标签的属性，所以用法是谁等于谁，`v-bind:class="activated"`，因为同一个标签会有很多属性，所以可以简写为 `:class="activated`
 * 修饰符
+   * `v-model.lazy` 懒绑定可以使得数据等到失焦或者回车后才绑定到对应的模型上，而不是每次输入都会绑定
+   * `v-model.number` 使绑定值的类型尽可能转化为 `number` 类型
+   * `v-model.trim` 可以在绑定前去除前后的空格
 
 
 

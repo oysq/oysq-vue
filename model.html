@@ -13,6 +13,14 @@
 
 		<hr>
 
+		<input type="text" v-model.number="value" />
+
+		<hr>
+
+		<input type="text" v-model.trim="value" />
+
+		<hr>
+
 		{{value}}
 
 	</div>
@@ -23,6 +31,12 @@
 			el: '#app',
 			data: {
 				value: ""
+			},
+			watch: {
+				value: function() {
+					console.log(typeof this.value)
+					console.log(this.value.length)
+				}
 			}
 		})
 
