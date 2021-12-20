@@ -172,6 +172,38 @@
    * 在组件外部的事件上加修饰符：`.native`，例如：`@click.native="handleClick"`
 
 
+#### 非父子组件间传值(Bus/总线/发布订阅模式/观察者模式)
+
+> component_params_3.html
+
+* 消息总线是非父子组件传值的方式之一（还有一种是 vuex ）
+* 分三步：
+   * 定义一个全局的消息总线：`Vue.prototype.bus = new Vue()` ，这里的 bus 可以是任意单词，不一定要叫 bus
+   * 某些组件监听消息：`this.bus.$on("change", function(msg) { alert(msg) })`
+   * 某个组件触发消息：`this.bus.$emit("change", "msg")`
+* 注意监听者实现体内的 `this` 作用域会发生变化
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-非父子组件间传值</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		
+		<child :name="'aaa'"></child>
+		<child :name="'bbb'"></child>
+
+	</div>
+
+	<script>
+
+		Vue.prototype.bus = new Vue()
+
+		var child = {
+			props: {
+				name: String
+			},
+			data: function() {
+				return {
+					selfName: this.name,
+					otherName: ""
+				}
+			},
+			template: "<div @click='handleClick'>{{selfName}} -- {{otherName}}</div>",
+			methods: {
+				handleClick: function() {
+					this.bus.$emit("change", this.selfName)
+				}
+			},
+			mounted: function() {
+				var this_ = this
+				this.bus.$on("change", function(msg) {
+					this_.otherName = this_.otherName + " " + msg
+				})
+			}
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				child: child
+			}
+		})
+
+	</script>
+
+</body>
+</html>
