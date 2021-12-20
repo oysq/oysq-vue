@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="utf-8">
+	<title>Vue-组件绑定原生事件</title>
+	<script src="./vue.js" ></script>
+</head>
+<body>
+
+	<div id="app">
+		
+		<child @parent-click="parentClick"></child>
+
+		<child-native @click.native="parentClick"></child-native>
+
+	</div>
+
+	<script>
+
+		var child = {
+			template: "<div @click='childClick'>点击</div>",
+			methods: {
+				childClick: function() {
+					alert("child click")
+					this.$emit("parent-click")
+				}
+			}
+		}
+
+		var childNative = {
+			template: "<div>点击</div>"
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			components: {
+				child: child,
+				childNative: childNative
+			},
+			methods: {
+				parentClick: function() {
+					alert("parent click")
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>
