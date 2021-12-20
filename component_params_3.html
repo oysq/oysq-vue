@@ -9,8 +9,8 @@
 
 	<div id="app">
 		
-		<child :name="'aaa'"></child>
-		<child :name="'bbb'"></child>
+		<child-one :name="'aaa'"></child-one>
+		<child-two :name="'bbb'"></child-two>
 
 	</div>
 
@@ -18,7 +18,24 @@
 
 		Vue.prototype.bus = new Vue()
 
-		var child = {
+		var childOne = {
+			props: {
+				name: String
+			},
+			data: function() {
+				return {
+					selfName: this.name,
+				}
+			},
+			template: "<div @click='handleClick'>{{selfName}}</div>",
+			methods: {
+				handleClick: function() {
+					this.bus.$emit("change", this.selfName)
+				}
+			}
+		}
+
+		var childTwo = {
 			props: {
 				name: String
 			},
@@ -28,15 +45,18 @@
 					otherName: ""
 				}
 			},
-			template: "<div @click='handleClick'>{{selfName}} -- {{otherName}}</div>",
-			methods: {
-				handleClick: function() {
-					this.bus.$emit("change", this.selfName)
-				}
-			},
+			template: "<div>{{selfName}} -- {{otherName}}</div>",
 			mounted: function() {
 				var this_ = this
+				
+				console.log(this)
+				console.log(this_)
+				
 				this.bus.$on("change", function(msg) {
+
+					console.log(this)// 这里的 this 变了
+					console.log(this_)
+
 					this_.otherName = this_.otherName + " " + msg
 				})
 			}
@@ -45,7 +65,8 @@
 		var app = new Vue({
 			el: '#app',
 			components: {
-				child: child
+				childOne: childOne,
+				childTwo: childTwo
 			}
 		})
 
