@@ -176,7 +176,7 @@
 
 > component_params_3.html
 
-* 消息总线是非父子组件传值的方式之一（还有一种是 vuex ）
+* 消息总线是非父子组件传值的方式之一（还有一种是 `vuex` ）
 * 分三步：
    * 定义一个全局的消息总线：`Vue.prototype.bus = new Vue()` ，这里的 bus 可以是任意单词，不一定要叫 bus
    * 某些组件监听消息：`this.bus.$on("change", function(msg) { alert(msg) })`
@@ -184,7 +184,9 @@
 * 注意监听者实现体内的 `this` 作用域会发生变化
 
 
+#### 插槽slot
 
+* `<slot>默认值</slot>` 内部可以放默认
 
 
 
