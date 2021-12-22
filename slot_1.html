@@ -9,26 +9,40 @@
 
 	<div id="app">
 		
-		<child>
+		<!-- 匿名插槽 -->
+		<child-one>
 			<h2>OYSQ</h2>
-		</child>
+		</child-one>
+
+		<hr>
+
+        <!-- 具名插槽 -->
+		<child-two>
+			<h3 slot='header'>HEADER</h3>
+			<h3 slot='footer'>FOOTER</h3>
+		</child-two>
 
 	</div>
 
 	<script>
 
-		var child = {
+		Vue.component('childOne', {
 			template: `<div>
 						<div>Hello Word</div>
 						<slot>这是默认值</slot>
 			           </div>`
-		}
+		})
+
+		Vue.component('childTwo', {
+			template: `<div>
+						<slot name='header'>这是默认 header</slot>
+						<div>Hello Word</div>
+						<slot name='footer'>这是默认 footer</slot>
+			           </div>`
+		})
 		
 		var app = new Vue({
-			el: '#app',
-			components: {
-				child: child
-			}
+			el: '#app'
 		})
 
 	</script>
