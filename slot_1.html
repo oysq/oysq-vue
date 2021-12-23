@@ -22,6 +22,15 @@
 			<h3 slot='footer'>FOOTER</h3>
 		</child-two>
 
+		<hr>
+
+		<!-- 作用域插槽 -->
+		<child-three>
+			<template slot-scope="props">
+				<h3>this is : {{props.val}}</h3>
+			</template>
+		</child-three>
+
 	</div>
 
 	<script>
@@ -38,6 +47,17 @@
 						<slot name='header'>这是默认 header</slot>
 						<div>Hello Word</div>
 						<slot name='footer'>这是默认 footer</slot>
+			           </div>`
+		})
+
+		Vue.component('childThree', {
+			data: function() {
+				return {
+					list: [1, 2, 3]
+				}
+			},
+			template: `<div>
+						<slot v-for="item of list" :val=item></slot>
 			           </div>`
 		})
 		
