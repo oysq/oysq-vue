@@ -28,7 +28,12 @@
 		}
 
 		var childNative = {
-			template: "<div>点击</div>"
+			template: "<div @click='childClick'>点击</div>",
+			methods: {
+				childClick: function() {
+					alert("child click")
+				}
+			}
 		}
 		
 		var app = new Vue({
