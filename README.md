@@ -36,7 +36,7 @@
 
 > computed.html
 
-* computed 是自带缓存的，当它计算所需要依赖的变量没有改变时，它是不会重新计算的。而 function 的方式，每次页面重新渲染，它都会重新计算一次
+* computed 是自带缓存的，当它计算所需要依赖的变量没有改变时，它是不会重新计算的。而 function 的方式，每次重新渲染，它都会重新计算一次
 * 侦听器 `watch` 也是在指定的变量发生改变时触发，可以实现类似的缓存效果，但是得到结果依赖的所有变量都得写一个侦听器，并不适合此场景
 * computed 还支持细化的 `get`/`set` 方法，注意 `set` 方法里面可能会改变多个依赖的 property，但是 `get` 方法只会触发一次
 * `{{}}` 符号内使用 property 和 computed 是不需要带 `()` 后缀的，但是如果使用函数（methods 里的方法），就需要带上 `()` 后缀
@@ -47,7 +47,7 @@
 > bind_style.html
 
 * `:class="{activated: isActivated}"` : isActivated=true时，:class="activated"，否则 class=""
-* `:class="[classStyle1, classStyle2, ...]"` : classStyle1、classStyle2 是一个个的 data 变量，值是什么，样式就是什么
+* `:class="[classStyle1, classStyle2, ...]"` : classStyle1、classStyle2 是一个个的 data 内的变量，值是什么，样式就是什么
 * `:style=styleObj` / `:style=[styleObj1, styleObj2]` : 也是类似的道理，styleObj 是一个变量，里面存的不是class的名称，而是class内的各种样式
 
 
@@ -75,13 +75,13 @@
 
 * 对象循环 `v-for="(value, key, index) of user"` 用 `of`
     * 对象循环时，可以直接使用 `app.user.addr = "abc123"` 修改某个key的值或新增一个key，但是新增的key不会在页面进行渲染，修改的才会
-    * 改变整个对象的引用可以修改或新增key，且都渲染到页面
-    * `Vue.set(app.user, "addr", "abc123")` 或 `app.$set(app.user, "addr", "aaaaa")` 可以对修改或新增key，且都渲染到页面
+    * 改变整个对象的引用可以达到修改或新增key的目的，且都渲染到页面
+    * `Vue.set(app.user, "addr", "abc123")` 或 `app.$set(app.user, "addr", "aaaaa")` 可以修改或新增key，且都渲染到页面
 
 
 #### 事件绑定
 
-> list.html
+> event.html
 
 * `@click` 可以传递 `$event` 得到点击事件的详细信息
 * 点击修饰符：`@click` 支持很多事件修饰符
@@ -115,7 +115,7 @@
 
 > component_detail_1.html
 
-* html5 的规范要求: `<table>` 标签下必须是 `<tbody>` 标签，然后依次是 `<tr>` 和 `<td>` ，但是当我们用组件封装了 `<tr>` 和 `<td>` 时，html5 会解析失败，这个时候可以用 `is=` 语法来制定这个 `<tr>` 标签其实是某个组件。类似的还有 `<ul>`/`<li>`标签、`<select>` 标签等
+* html5 的规范要求: `<table>` 标签下必须是 `<tbody>` 标签，然后依次是 `<tr>` 和 `<td>` ，但是当我们用组件封装了 `<tr>` 和 `<td>` 时，html5 会解析失败，这个时候可以用 `is=` 语法来指定这个 `<tr>` 标签其实是某个封装好的组件。类似的还有 `<ul>`/`<li>`标签、`<select>` 标签等
 
 
 #### 组件细节之数据安全
