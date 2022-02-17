@@ -199,6 +199,13 @@
    * 父组件的填入部分必须由 `<template></template>` 标签包裹，并在标签上定义一个 `slot-scope="props"`，然后可以通过 `props.val` 来得到子组件映射过来的数据结构，其中 `props` 是父组件定义的单词，`val` 是子组件定义的单词
    
 
+#### 动态组件和v-once指令
+
+> component_dynamic.html
+
+* `<component :is="xxx"></component>` 是vue的一个标签，可以占用一个位置，具体该位置使用的插件由 `is` 属性的值指定
+* 当一个标签使用 `v-once` 修饰之后，这个标签内部的页面只会渲染一次，不会再动态响应
+
 
 
 
